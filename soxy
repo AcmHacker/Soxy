@@ -4,8 +4,13 @@ set -o errexit -o pipefail
 
 ## SCRIPT VARS, DON'T MODIFY
 ########################################
+#consider the Mac OS
+if [ $(uname) = "Darwin" ]; then
+	SCRIPT_PATH="$(dirname $(readlink -n ${0}))"
+else
+	SCRIPT_PATH="$(dirname $(readlink -f ${0}))"	
+fi
 
-SCRIPT_PATH="$(dirname $(readlink -f ${0}))"
 SOXY_DIR="${HOME}/.soxy"
 SOXY_CONF="${SOXY_DIR}/config"
 SOXY_LOG="${SOXY_DIR}/soxy.log"
